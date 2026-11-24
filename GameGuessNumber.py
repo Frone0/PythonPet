@@ -1,4 +1,6 @@
 import random
+import PythonPet as main
+
 Number = 67
 
 def StartGame():
@@ -10,6 +12,7 @@ def StartGame():
     
         if(PlayerNumber == Number):
             print("Right! You won")
+            main.GiveCommand()
             break
         else:
             if(PlayerNumber > Number):

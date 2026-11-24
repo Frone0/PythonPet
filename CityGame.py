@@ -1,5 +1,5 @@
 import random
-
+import PythonPet as main
 with open("CitysList", encoding="utf-8") as f:
     cities = [line.strip().lower() for line in f if line.strip()]
 
@@ -22,6 +22,7 @@ def StartGame():
 
        if(PlayerCity == "quit"):
            print("Game is over")
+           main.GiveCommand()
            break
        if PlayerCity not in cities:
            print("I don't know that city.")

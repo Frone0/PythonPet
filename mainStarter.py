@@ -1,0 +1,3 @@
+import PythonPet
+
+PythonPet.StartZero()
