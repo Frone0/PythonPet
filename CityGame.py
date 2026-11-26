@@ -59,9 +59,15 @@ def GetRandomCity():
     return random.choice(cities)
 
 def GetFirstLetterOfCityName(name):
-    letters = list(name)
-    return letters[0]
+    return name[0]
 
-def GetLastletterOfCityName(name):
-    letters = list(name)
-    return letters[len(letters) - 1]
+
+
+def GetLastletterOfCityName(name): 
+    i = -1
+    while True:
+        if name[i].isalpha():
+           return name[i]
+        else:
+           i -= 1
+           continue

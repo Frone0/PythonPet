@@ -2,6 +2,7 @@ import GamesControl as Game
 from PetStats import Pet
 import time
 import TextsAppearingEffect as TextEff
+import colors as color
 
 my_pet = Pet("")
 
@@ -13,20 +14,23 @@ def StartZero():
     MainPanel()
 
 def GiveCommand():
+    print("\n")
     print("Enter 0 to see list of comands")
-    command = int(input("Choose what you want to do <3:"))
+    command = GetNumber("Choose what you want to do <3:")
 
     if(command == 0):
         MainPanel()
     
-    if(command == 1):
+    elif(command == 1):
         ShowStats()
     
-    if(command == 2):
+    elif(command == 2):
         FeedThePet()
 
-    if(command == 3):
+    elif(command == 3):
         Game.ChooseGame()
+    else:
+        GiveCommand()
 
 def MainPanel():
     TextEff.MakeTextEffect("To check commands ids - 0", True)
@@ -48,7 +52,24 @@ def ShowStats():
 
 def FeedThePet():
     my_pet.FeedThePet()
-    TextEff.MakeTextEffect("am am am")
+    TextEff.MakeTextEffect("am am am", False)
     time.sleep(1)
     GiveCommand()
     
+
+
+
+def GetNumber(question):
+ while True:
+    answer = input(question)
+
+    if len(answer) != 1:
+        print(color.RED + "Please enter one digit number!" + color.RESET )
+        continue
+
+    try:
+        number = int(answer)
+        return number
+        break
+    except ValueError:
+        print(color.RED + "Please enter a number" + color.RESET)

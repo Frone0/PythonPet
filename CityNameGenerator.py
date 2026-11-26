@@ -1,50 +1,63 @@
 import random
+import json
+from pathlib import Path
 
+file_path = Path("DictionaryOfLetters.json")
 
 with open("CitysList", encoding="utf-8") as f:
     cities = [line.strip().lower() for line in f if line.strip()]
 
+if(not file_path.exists()):
 
-for i, CityName in enumerate(cities):
-    cities[i] = "." + CityName + "."
+    for i, CityName in enumerate(cities):
+        cities[i] = "." + CityName + "."
+    
+    
+    
+    DictionaryOfLetters = {"a" : {"b" : 1}}
+    
+    for word in cities:
+        for letter in word:
+            if letter not in DictionaryOfLetters:
+                DictionaryOfLetters[letter] = {}
+    
+    
+    
+    for  word in (cities):
+        letters = list(word)
+    
+        for i in range(len(letters) - 1):
+                if letters[i + 1] in DictionaryOfLetters[letters[i]]:
+                    DictionaryOfLetters[letters[i]][letters[i + 1]] += 1   
+                else:
+                    DictionaryOfLetters[letters[i]][letters[i + 1]] = 1  
+                    
+    with open("DictionaryOfLetters.json", "w") as file:
+        json.dump(DictionaryOfLetters, file, indent=2)
+    
+
+else:
+    with open("DictionaryOfLetters.json", "r") as file:
+        DictionaryOfLetters = json.load(file)
+   
 
 
-
-DictionaryOfLetters = {"a" : {"b" : 1}}
-
-for word in cities:
-    for letter in word:
-        if letter not in DictionaryOfLetters:
-            DictionaryOfLetters[letter] = {}
-
-
-
-for  word in (cities):
-    letters = list(word)
-
-    for i in range(len(letters) - 1):
-            if letters[i + 1] in DictionaryOfLetters[letters[i]]:
-                DictionaryOfLetters[letters[i]][letters[i + 1]] += 1   
-            else:
-                DictionaryOfLetters[letters[i]][letters[i + 1]] = 1  
- 
-currentletter = "."
-
-def Game():
+def Generation(letter):
     print("")
-    currentletter = input("Give the first letter: ").strip().lower()
+    CityName = ""
+    currentletter = letter.strip().lower()
 
-    for i in range(10):
+    while True:
+        
         keys = list(DictionaryOfLetters[currentletter].keys())
-        Changes = list(DictionaryOfLetters[currentletter].values())
+        Chances = list(DictionaryOfLetters[currentletter].values())
 
-        print(currentletter, end="", flush=True)
-        nextletter = random.choices(keys,Changes)[0]
+        nextletter = random.choices(keys,Chances)[0]
+
 
         if(nextletter == "."):
-           break 
-        currentletter = nextletter
-    Game()
+           return CityName 
 
-Game()
-    
+        currentletter = nextletter
+        CityName += currentletter
+        #print(currentletter, end="", flush=True)

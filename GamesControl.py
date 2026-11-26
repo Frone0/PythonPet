@@ -1,16 +1,25 @@
 import CityGame as City
 import  GameGuessNumber as Numbers
+import GameRealOrFake as GeneratorGame
+import PythonPet as pet
+import CheckInput as check
 
 IsInGame = False
 
 def ChooseGame():
     IsInGame = False
-    print("Which game do you want to play?")
+    print("Which game do you want to play?\n")
+    print("0 - return to commands")
     print("1 - Cities")
     print("2 - Guess the number")
-    print("3 - City name generator")
+    print("3 - Real city or not")
 
-    game_id = int(input("Write a number 1-2: "))
+    
+    game_id = int(check.GetResponse("Write a number 1-2-3: ", ["0","1","2","3"]))
+
+    if  game_id == 0:
+        pet.GiveCommand()
+        return
 
     if game_id == 1:
         print("Let's play Cities!")
@@ -21,3 +30,8 @@ def ChooseGame():
          print("Let's play Guess the number!")
          IsInGame = True
          Numbers.StartGame()
+
+    if game_id == 3:
+        print("Let's play Real city or not!")
+        IsInGame = True
+        GeneratorGame.StartGame()

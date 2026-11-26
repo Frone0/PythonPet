@@ -7,7 +7,7 @@ def MakeTextEffect(text,FastMode):
         if msvcrt.kbhit():              
             key = msvcrt.getch()         
             if key == b"\r": 
-                print(print(text[i:], end="", flush=True)) 
+                print(text[i:], end="", flush=True) 
                 break           
 
         print(letter, end="", flush=True)
