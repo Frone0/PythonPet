@@ -8,6 +8,7 @@ def ChooseGame():
     print("Which game do you want to play?")
     print("1 - Cities")
     print("2 - Guess the number")
+    print("3 - City name generator")
 
     game_id = int(input("Write a number 1-2: "))
 
