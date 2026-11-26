@@ -14,23 +14,25 @@ def StartZero():
     MainPanel()
 
 def GiveCommand():
-    print("\n")
-    print("Enter 0 to see list of comands")
-    command = GetNumber("Choose what you want to do <3:")
 
-    if(command == 0):
-        MainPanel()
+    while True:
+        print("\n")
+        print("Enter 0 to see list of comands")
+        command = GetNumber("Choose what you want to do <3:")
     
-    elif(command == 1):
-        ShowStats()
+        if(command == 0):
+            MainPanel()
+        
+        elif(command == 1):
+            ShowStats()
+        
+        elif(command == 2):
+            FeedThePet()
     
-    elif(command == 2):
-        FeedThePet()
-
-    elif(command == 3):
-        Game.ChooseGame()
-    else:
-        GiveCommand()
+        elif(command == 3):
+            Game.ChooseGame()
+        else:
+            GiveCommand()
 
 def MainPanel():
     TextEff.MakeTextEffect("To check commands ids - 0", True)

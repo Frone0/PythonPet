@@ -18,7 +18,6 @@ def ChooseGame():
     game_id = int(check.GetResponse("Write a number 1-2-3: ", ["0","1","2","3"]))
 
     if  game_id == 0:
-        pet.GiveCommand()
         return
 
     if game_id == 1:

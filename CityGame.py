@@ -22,8 +22,7 @@ def StartGame():
 
        if(PlayerCity == "quit"):
            print("Game is over")
-           main.GiveCommand()
-           break
+           return
        if PlayerCity not in cities:
            print("I don't know that city.")
            continue

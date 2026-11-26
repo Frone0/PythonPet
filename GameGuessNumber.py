@@ -9,7 +9,7 @@ def StartGame():
     print("Guess the number from 1 to 1000")
     Number = random.randrange(1,1000)
 
-    tryies = 0
+    tries = 0
 
     while True:
         while True:
@@ -19,15 +19,16 @@ def StartGame():
                 PlayerNumber = int(PlayerNumber)
                 break
             else:
+                print(color.RED + "You should write a number!" + color.RESET)
                 continue
 
         tries += 1
     
         if(PlayerNumber == Number):
             print(color.GREEN + "Right! You won" + color.RESET)
-            print("You have made: " + tries + " tries")
-            main.GiveCommand()
-            break
+            print("You have made: " + str(tries) + " tries")
+            return
+            
         else:
             if(PlayerNumber > Number):
                 print( color.YELLOW + "The chosen number is smaler than: " + color.RESET + str(PlayerNumber))

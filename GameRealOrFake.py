@@ -43,13 +43,12 @@ def Game():
         
         if(PlayerInput == "quit"):
             if score > 0:
-               color =  color.GREEN
+               AnswerColor =  color.GREEN
             else:
-               color =  color.RED
+               AnswerColor =  color.RED
 
-            print("Your score: " + color + str(score) + color.RESET)
-            main.GiveCommand()
-            break
+            print("Your score: " + AnswerColor + str(score) + color.RESET)
+            return
     
         chosednumber = int(PlayerInput)
     
