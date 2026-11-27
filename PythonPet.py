@@ -5,10 +5,9 @@ import TextsAppearingEffect as TextEff
 import colors as color
 import CheckInput as check
 import SaveloadPet as save
-from pathlib import Path
 
 
-file_path = Path("Pet.json")
+file_path = save.file_path
 
 
 
@@ -36,7 +35,7 @@ def GiveCommand():
     while True:
         print("\n")
         print("Enter 0 to see list of comands")
-        command = int(check.GetResponse("Choose what you want to do <3:",["0","1","2","3"]))
+        command = int(check.GetResponse("Choose what you want to do <3:",["0","1","2","3","4"]))
 
         save.SaveThePet(my_pet)
 
@@ -52,6 +51,11 @@ def GiveCommand():
     
         elif(command == 3):
             Game.ChooseGame()
+
+        elif(command == 4):
+            TextEff.MakeTextEffect(f"Bye! {my_pet.name} will wait for you <3", False)
+            input("Press Enter to close...")
+            return
         else:
             print(color.RED +"Unknown command!" + color.RESET)
 
@@ -60,6 +64,7 @@ def MainPanel():
     TextEff.MakeTextEffect("To see my stats - 1", True)
     TextEff.MakeTextEffect("To feed me - 2", True)
     TextEff.MakeTextEffect("To play games - 3", True)
+    TextEff.MakeTextEffect("To exit - 4", True)
 
     return
 

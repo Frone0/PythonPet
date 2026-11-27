@@ -1,3 +1,4 @@
+from Paths import DataPath
 import random
 import CityNameGenerator as Generator
 import PythonPet as main
@@ -9,7 +10,7 @@ import colors as color
 
 score = 0
 
-with open("CitysList", encoding="utf-8") as f:
+with open(DataPath("CitysList"), encoding="utf-8") as f:
     cities = [line.strip().lower() for line in f if line.strip()]
 
 isReal = False

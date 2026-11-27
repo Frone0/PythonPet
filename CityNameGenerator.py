@@ -1,10 +1,10 @@
 import random
 import json
-from pathlib import Path
+from Paths import DataPath
 
-file_path = Path("DictionaryOfLetters.json")
+file_path = DataPath("DictionaryOfLetters.json")
 
-with open("CitysList", encoding="utf-8") as f:
+with open(DataPath("CitysList"), encoding="utf-8") as f:
     cities = [line.strip().lower() for line in f if line.strip()]
 
 if(not file_path.exists()):
@@ -32,12 +32,12 @@ if(not file_path.exists()):
                 else:
                     DictionaryOfLetters[letters[i]][letters[i + 1]] = 1  
                     
-    with open("DictionaryOfLetters.json", "w") as file:
+    with open(file_path, "w") as file:
         json.dump(DictionaryOfLetters, file, indent=2)
     
 
 else:
-    with open("DictionaryOfLetters.json", "r") as file:
+    with open(file_path, "r") as file:
         DictionaryOfLetters = json.load(file)
    
 
