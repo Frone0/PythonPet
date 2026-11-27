@@ -1,5 +1,7 @@
 import random
-import PythonPet as main
+import colors as color
+import TextsAppearingEffect as TextEff
+
 with open("CitysList", encoding="utf-8") as f:
     cities = [line.strip().lower() for line in f if line.strip()]
 
@@ -17,31 +19,31 @@ def StartGame():
     UsedCities.clear()
 
     while True:
-       print("Your city should start with letter:" + GetLastletterOfCityName(PetCity))
+       print("\nYour city should start with letter:" + color.YELLOW + GetLastletterOfCityName(PetCity) + color.RESET) 
        PlayerCity = input("Name your city (or 'quit'): ").strip().lower()
 
        if(PlayerCity == "quit"):
-           print("Game is over")
+           print(color.RED + "Game is over" + color.RESET)
            return
        if PlayerCity not in cities:
-           print("I don't know that city.")
+           print(color.RED + "I don't know thit city." + color.RESET)
            continue
        if(PlayerCity in UsedCities):
-           print("This city was already used!")
+           print(color.RED + "This city was already used!" + color.RESET)
            continue 
        if(GetFirstLetterOfCityName(PlayerCity) == GetLastletterOfCityName(PetCity)):
                UsedCities.append(PlayerCity)
                PetCity = FindCityByLetter(GetLastletterOfCityName(PlayerCity))
 
                if(PetCity == None):
-                   print("You Won")
+                   print(color.GREEN + "You Won" + color.RESET)
                    break
 
                if(PetCity not in UsedCities):     
                    UsedCities.append(PetCity)            
-                   print("My city is\n" + PetCity)
+                   TextEff.MakeTextEffect("My city is\n" + color.YELLOW + PetCity + color.RESET,False)
        else:
-           print("Wrong first letter")
+           print(color.RED + "Wrong first letter" + color.RESET)
            continue
 
 

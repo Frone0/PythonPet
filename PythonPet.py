@@ -3,22 +3,43 @@ from PetStats import Pet
 import time
 import TextsAppearingEffect as TextEff
 import colors as color
+import CheckInput as check
+import SaveloadPet as save
+from pathlib import Path
+
+
+file_path = Path("Pet.json")
+
+
 
 my_pet = Pet("")
 
 def StartZero():
     global my_pet
-    my_pet = Pet(input("Make a name for your pet: "))
-    TextEff.MakeTextEffect(f"Hi i am {my_pet.name}, your pet",False)
-    TextEff.MakeTextEffect("You should look after me!!!",False)
+    
+    if(file_path.exists()):
+        my_pet = save.LoadThePet() 
+        TextEff.MakeTextEffect("Hi!!! i was waiting for you!",False)
+
+    else:
+          my_pet = Pet(input("Make a name for your pet: "))
+          TextEff.MakeTextEffect(f"Hi i am {my_pet.name}, your pet",False)
+          TextEff.MakeTextEffect("You should look after me!!!",False)
+
+          save.SaveThePet(my_pet)
+
     MainPanel()
+    GiveCommand()
 
 def GiveCommand():
 
     while True:
         print("\n")
         print("Enter 0 to see list of comands")
-        command = GetNumber("Choose what you want to do <3:")
+        command = int(check.GetResponse("Choose what you want to do <3:",["0","1","2","3"]))
+
+        save.SaveThePet(my_pet)
+
     
         if(command == 0):
             MainPanel()
@@ -32,7 +53,7 @@ def GiveCommand():
         elif(command == 3):
             Game.ChooseGame()
         else:
-            GiveCommand()
+            print(color.RED +"Unknown command!" + color.RESET)
 
 def MainPanel():
     TextEff.MakeTextEffect("To check commands ids - 0", True)
@@ -40,38 +61,19 @@ def MainPanel():
     TextEff.MakeTextEffect("To feed me - 2", True)
     TextEff.MakeTextEffect("To play games - 3", True)
 
-    GiveCommand()
+    return
+
 
 def ShowStats():
     my_pet.UpdateData()
 
     print(f"Name: {my_pet.name}")
-    print(f"Happiness: {my_pet.happiness}")
-    print(f"Health: {my_pet.health}")
-    print(f"fullness: {my_pet.fullness}")
+    print(f"age: {int(my_pet.age)}")
+    print(f"Health: {int(my_pet.health)}")
+    print(f"fullness: {int(my_pet.fullness)}")
 
-    GiveCommand()
 
 def FeedThePet():
     my_pet.FeedThePet()
     TextEff.MakeTextEffect("am am am", False)
     time.sleep(1)
-    GiveCommand()
-    
-
-
-
-def GetNumber(question):
- while True:
-    answer = input(question)
-
-    if len(answer) != 1:
-        print(color.RED + "Please enter one digit number!" + color.RESET )
-        continue
-
-    try:
-        number = int(answer)
-        return number
-        break
-    except ValueError:
-        print(color.RED + "Please enter a number" + color.RESET)
